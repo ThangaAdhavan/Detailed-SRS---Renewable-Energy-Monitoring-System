@@ -1,0 +1,983 @@
+{
+    "info": {
+        "name": "Renewable Energy Monitoring System",
+        "_postman_id": "b3f1a7b0-1e2d-4a6e-9c3a-renewable-energy-001",
+        "description": "Complete Postman collection for the Renewable Energy Monitoring System microservices: solar-panel-service, wind-turbine-service, battery-service, energy-distribution-service, and the api-gateway.",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "variable": [
+        {
+            "key": "gatewayBaseUrl",
+            "value": "http://localhost:8080"
+        },
+        {
+            "key": "solarBaseUrl",
+            "value": "http://localhost:8081"
+        },
+        {
+            "key": "windBaseUrl",
+            "value": "http://localhost:8082"
+        },
+        {
+            "key": "batteryBaseUrl",
+            "value": "http://localhost:8083"
+        },
+        {
+            "key": "distributionBaseUrl",
+            "value": "http://localhost:8084"
+        }
+    ],
+    "item": [
+        {
+            "name": "Solar Panel Service",
+            "item": [
+                {
+                    "name": "Register Solar Panel",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{solarBaseUrl}}/api/solar",
+                            "host": [
+                                "{{solarBaseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "solar"
+                            ]
+                        },
+                        "description": "",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"deviceName\": \"Panel-A1\",\n  \"location\": \"Rooftop-North\",\n  \"capacity\": 500.0,\n  \"status\": \"ACTIVE\",\n  \"maintenance\": \"OPERATIONAL\"\n}"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update Solar Panel",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{solarBaseUrl}}/api/solar/1",
+                            "host": [
+                                "{{solarBaseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "solar",
+                                "1"
+                            ]
+                        },
+                        "description": "",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"deviceName\": \"Panel-A1\",\n  \"location\": \"Rooftop-North\",\n  \"capacity\": 550.0,\n  \"status\": \"ACTIVE\",\n  \"maintenance\": \"OPERATIONAL\"\n}"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete Solar Panel",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                            "raw": "{{solarBaseUrl}}/api/solar/1",
+                            "host": [
+                                "{{solarBaseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "solar",
+                                "1"
+                            ]
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Solar Panel By Id",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{solarBaseUrl}}/api/solar/1",
+                            "host": [
+                                "{{solarBaseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "solar",
+                                "1"
+                            ]
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get All Solar Panels",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{solarBaseUrl}}/api/solar",
+                            "host": [
+                                "{{solarBaseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "solar"
+                            ]
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Record Hourly Generation",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{solarBaseUrl}}/api/solar/1/generation",
+                            "host": [
+                                "{{solarBaseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "solar",
+                                "1",
+                                "generation"
+                            ]
+                        },
+                        "description": "",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"generationValue\": 350.0,\n  \"hourOfDay\": 12\n}"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Total Current Generation",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{solarBaseUrl}}/api/solar/generation/total",
+                            "host": [
+                                "{{solarBaseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "solar",
+                                "generation",
+                                "total"
+                            ]
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Zero-Generation Faults",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{solarBaseUrl}}/api/solar/faults/zero-generation",
+                            "host": [
+                                "{{solarBaseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "solar",
+                                "faults",
+                                "zero-generation"
+                            ]
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Panels Under Maintenance",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{solarBaseUrl}}/api/solar/maintenance",
+                            "host": [
+                                "{{solarBaseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "solar",
+                                "maintenance"
+                            ]
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Wind Turbine Service",
+            "item": [
+                {
+                    "name": "Register Wind Turbine",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{windBaseUrl}}/api/wind",
+                            "host": [
+                                "{{windBaseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "wind"
+                            ]
+                        },
+                        "description": "",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"deviceName\": \"Turbine-A1\",\n  \"location\": \"Coastal-Ridge\",\n  \"capacity\": 800.0,\n  \"status\": \"ACTIVE\",\n  \"maintenance\": \"OPERATIONAL\"\n}"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update Wind Turbine",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{windBaseUrl}}/api/wind/1",
+                            "host": [
+                                "{{windBaseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "wind",
+                                "1"
+                            ]
+                        },
+                        "description": "",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"deviceName\": \"Turbine-A1\",\n  \"location\": \"Coastal-Ridge\",\n  \"capacity\": 850.0,\n  \"status\": \"ACTIVE\",\n  \"maintenance\": \"OPERATIONAL\"\n}"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete Wind Turbine",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                            "raw": "{{windBaseUrl}}/api/wind/1",
+                            "host": [
+                                "{{windBaseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "wind",
+                                "1"
+                            ]
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Wind Turbine By Id",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{windBaseUrl}}/api/wind/1",
+                            "host": [
+                                "{{windBaseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "wind",
+                                "1"
+                            ]
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get All Wind Turbines",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{windBaseUrl}}/api/wind",
+                            "host": [
+                                "{{windBaseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "wind"
+                            ]
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Record Power Output",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{windBaseUrl}}/api/wind/1/power-output",
+                            "host": [
+                                "{{windBaseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "wind",
+                                "1",
+                                "power-output"
+                            ]
+                        },
+                        "description": "",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"powerOutputValue\": 420.0,\n  \"hourOfDay\": 14\n}"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Total Current Output",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{windBaseUrl}}/api/wind/power-output/total",
+                            "host": [
+                                "{{windBaseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "wind",
+                                "power-output",
+                                "total"
+                            ]
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Zero-Output Faults",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{windBaseUrl}}/api/wind/faults/zero-output",
+                            "host": [
+                                "{{windBaseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "wind",
+                                "faults",
+                                "zero-output"
+                            ]
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Turbines Under Maintenance",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{windBaseUrl}}/api/wind/maintenance",
+                            "host": [
+                                "{{windBaseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "wind",
+                                "maintenance"
+                            ]
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Battery Service",
+            "item": [
+                {
+                    "name": "Create Battery",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{batteryBaseUrl}}/api/battery",
+                            "host": [
+                                "{{batteryBaseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "battery"
+                            ]
+                        },
+                        "description": "",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"deviceName\": \"Battery-1\",\n  \"location\": \"Storage-Hall-A\",\n  \"capacity\": 1000.0,\n  \"status\": \"ACTIVE\"\n}"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update Battery",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{batteryBaseUrl}}/api/battery/1",
+                            "host": [
+                                "{{batteryBaseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "battery",
+                                "1"
+                            ]
+                        },
+                        "description": "",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"deviceName\": \"Battery-1\",\n  \"location\": \"Storage-Hall-A\",\n  \"capacity\": 1200.0,\n  \"status\": \"ACTIVE\"\n}"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete Battery",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                            "raw": "{{batteryBaseUrl}}/api/battery/1",
+                            "host": [
+                                "{{batteryBaseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "battery",
+                                "1"
+                            ]
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Battery Status By Id",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{batteryBaseUrl}}/api/battery/1",
+                            "host": [
+                                "{{batteryBaseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "battery",
+                                "1"
+                            ]
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get All Batteries",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{batteryBaseUrl}}/api/battery",
+                            "host": [
+                                "{{batteryBaseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "battery"
+                            ]
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Charge Battery",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{batteryBaseUrl}}/api/battery/1/charge",
+                            "host": [
+                                "{{batteryBaseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "battery",
+                                "1",
+                                "charge"
+                            ]
+                        },
+                        "description": "",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"energyAmountKwh\": 100.0\n}"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Discharge Battery",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{batteryBaseUrl}}/api/battery/1/discharge",
+                            "host": [
+                                "{{batteryBaseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "battery",
+                                "1",
+                                "discharge"
+                            ]
+                        },
+                        "description": "",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"energyAmountKwh\": 50.0\n}"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Available Capacity",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{batteryBaseUrl}}/api/battery/1/available-capacity",
+                            "host": [
+                                "{{batteryBaseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "battery",
+                                "1",
+                                "available-capacity"
+                            ]
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Remaining Capacity",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{batteryBaseUrl}}/api/battery/1/remaining-capacity",
+                            "host": [
+                                "{{batteryBaseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "battery",
+                                "1",
+                                "remaining-capacity"
+                            ]
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Total Available Capacity",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{batteryBaseUrl}}/api/battery/capacity/total-available",
+                            "host": [
+                                "{{batteryBaseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "battery",
+                                "capacity",
+                                "total-available"
+                            ]
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Total Remaining Capacity",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{batteryBaseUrl}}/api/battery/capacity/total-remaining",
+                            "host": [
+                                "{{batteryBaseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "battery",
+                                "capacity",
+                                "total-remaining"
+                            ]
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Low Battery Alerts",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{batteryBaseUrl}}/api/battery/alerts/low-battery",
+                            "host": [
+                                "{{batteryBaseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "battery",
+                                "alerts",
+                                "low-battery"
+                            ]
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Energy Distribution Service",
+            "item": [
+                {
+                    "name": "Process Distribution",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{distributionBaseUrl}}/api/distribution/process",
+                            "host": [
+                                "{{distributionBaseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "distribution",
+                                "process"
+                            ]
+                        },
+                        "description": "",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"demandKwh\": 500.0\n}"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Distribution By Id",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{distributionBaseUrl}}/api/distribution/1",
+                            "host": [
+                                "{{distributionBaseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "distribution",
+                                "1"
+                            ]
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get All Distributions",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{distributionBaseUrl}}/api/distribution",
+                            "host": [
+                                "{{distributionBaseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "distribution"
+                            ]
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Run Fault Detection",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                            "raw": "{{distributionBaseUrl}}/api/distribution/faults/detect",
+                            "host": [
+                                "{{distributionBaseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "distribution",
+                                "faults",
+                                "detect"
+                            ]
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Fault History",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{distributionBaseUrl}}/api/distribution/faults",
+                            "host": [
+                                "{{distributionBaseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "distribution",
+                                "faults"
+                            ]
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Daily Report (today)",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{distributionBaseUrl}}/api/distribution/report/daily",
+                            "host": [
+                                "{{distributionBaseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "distribution",
+                                "report",
+                                "daily"
+                            ]
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Daily Report (specific date)",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{distributionBaseUrl}}/api/distribution/report/daily?date=2026-07-16",
+                            "host": [
+                                "{{distributionBaseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "distribution",
+                                "report",
+                                "daily"
+                            ],
+                            "query": [
+                                {
+                                    "key": "date",
+                                    "value": "2026-07-16"
+                                }
+                            ]
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "API Gateway (Routed)",
+            "item": [
+                {
+                    "name": "Gateway -> Get All Solar Panels",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{gatewayBaseUrl}}/solar",
+                            "host": [
+                                "{{gatewayBaseUrl}}"
+                            ],
+                            "path": [
+                                "solar"
+                            ]
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Gateway -> Get All Wind Turbines",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{gatewayBaseUrl}}/wind",
+                            "host": [
+                                "{{gatewayBaseUrl}}"
+                            ],
+                            "path": [
+                                "wind"
+                            ]
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Gateway -> Get All Batteries",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{gatewayBaseUrl}}/battery",
+                            "host": [
+                                "{{gatewayBaseUrl}}"
+                            ],
+                            "path": [
+                                "battery"
+                            ]
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Gateway -> Get All Distributions",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{gatewayBaseUrl}}/distribution",
+                            "host": [
+                                "{{gatewayBaseUrl}}"
+                            ],
+                            "path": [
+                                "distribution"
+                            ]
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                }
+            ]
+        }
+    ]
+}
